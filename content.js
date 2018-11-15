@@ -10,17 +10,10 @@ function populate_navbar(){
 function reload_content(){
   var semester = window.location.hash.substr(1);
   var commit = null
-  switch(semester){
-    case "sp18":
-      commit = "c7896ecc3b9c05e693c63a4dff0fc05cd6b79631"
-      break
-    case "fa17":
-      commit = "05cbc6ec92621e61ff3c7cfde5027b63ed725222"
-      break
-    default:
-      break
+  if (semester in semester_latest_commit){
+    commit = semester_latest_commit[semester]
   }
-
+  
   if (commit) {
     document.getElementById('ws-content').src = "http://htmlpreview.github.io/?http://github.com/iosdecal/iosdecal.github.io/blob/" + commit + "/index.html"
   } else {
